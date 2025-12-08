@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solución: Card con Badge</title>
+
+    <!-- Fuente Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==============================
+           RESET + FUENTE ORBITRON
+           ============================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #1e293b 0%, #020617 55%, #000 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #e5e7eb;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #f9fafb;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            text-shadow: 0 0 12px rgba(129, 140, 248, 0.6);
+        }
+
+        .subtitle {
+            color: rgba(249, 250, 251, 0.8);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* ==============================
+           CARD CONTAINER
+           ============================== */
+        .card {
+            position: relative;
+            background: #020617;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            transition: all 0.3s ease;
+            border: 1px solid #1f2937;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 1);
+        }
+
+        /* ==============================
+           BADGE POSICIONADO
+           ============================== */
+        .badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            animation: badgeBounce 0.5s ease;
+        }
+
+        @keyframes badgeBounce {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .badge-new {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .badge-discount {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            font-size: 1rem;
+            padding: 0.6rem 1.2rem;
+        }
+
+        .badge-hot {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #111827;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .badge-limited {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            font-size: 0.65rem;
+            padding: 0.4rem 0.8rem;
+            animation: badgeShake 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeShake {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(-5deg);
+            }
+            75% {
+                transform: rotate(5deg);
+            }
+        }
+
+        .badge-premium {
+            background: linear-gradient(135deg, #1f2933 0%, #374151 100%);
+            color: #ffd700;
+            border: 2px solid #ffd700;
+        }
+
+        .badge-bestseller {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+        }
+
+        /* ==============================
+           CARD IMAGE
+           ============================== */
+        .card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        /* ==============================
+           CARD CONTENT
+           ============================== */
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            color: #e5e7eb;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .card-content p {
+            color: #9ca3af;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* ==============================
+           CARD FOOTER
+           ============================== */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #1f2937;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #818cf8 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* ==============================
+           RESPONSIVE
+           ============================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .badge {
+                top: 0.7rem;
+                right: 0.7rem;
+                font-size: 0.7rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .badge-discount {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-content {
+                padding: 1rem;
+            }
+            
+            .card-content h3 {
+                font-size: 1.1rem;
+            }
+            
+            .card-content p {
+                font-size: 0.9rem;
+            }
+            
+            .price {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cards con Badges Posicionados</h1>
+        <p class="subtitle">Ejemplos de position: absolute en acción</p>
+        
+        <div class="cards-grid">
+            <div class="card">
+                <span class="badge badge-new">NUEVO</span>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" alt="Auriculares premium">
+                </div>
+                <div class="card-content">
+                    <h3>Auriculares Pro Max</h3>
+                    <p>Cancelación de ruido activa y sonido de alta fidelidad para una experiencia inmersiva.</p>
+                    <div class="card-footer">
+                        <span class="price">$299.99</span>
+                        <button class="btn">Comprar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="badge badge-discount">-20%</span>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop" alt="Reloj elegante">
+                </div>
+                <div class="card-content">
+                    <h3>Reloj Smartwatch</h3>
+                    <p>Seguimiento de actividad 24/7 con diseño elegante y duración de batería de 7 días.</p>
+                    <div class="card-footer">
+                        <span class="price">$199.99</span>
+                        <button class="btn">Comprar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="badge badge-hot">HOT</span>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=300&fit=crop" alt="Gafas de sol">
+                </div>
+                <div class="card-content">
+                    <h3>Gafas de Sol Premium</h3>
+                    <p>Protección UV400 con diseño moderno y materiales de primera calidad.</p>
+                    <div class="card-footer">
+                        <span class="price">$149.99</span>
+                        <button class="btn">Comprar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="badge badge-limited">¡Últimas unidades!</span>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&h=300&fit=crop" alt="Zapatillas deportivas">
+                </div>
+                <div class="card-content">
+                    <h3>Zapatillas Running Pro</h3>
+                    <p>Máximo confort y rendimiento para tus entrenamientos más exigentes.</p>
+                    <div class="card-footer">
+                        <span class="price">$179.99</span>
+                        <button class="btn">Comprar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="badge badge-premium">PREMIUM</span>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop" alt="Mochila">
+                </div>
+                <div class="card-content">
+                    <h3>Mochila Profesional</h3>
+                    <p>Compartimento acolchado para laptop y diseño ergonómico anti-robo.</p>
+                    <div class="card-footer">
+                        <span class="price">$89.99</span>
+                        <button class="btn">Comprar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="badge badge-bestseller">★ Bestseller</span>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=300&fit=crop" alt="Perfume">
+                </div>
+                <div class="card-content">
+                    <h3>Fragancia Signature</h3>
+                    <p>Esencia única que combina notas frescas y amaderadas para ocasiones especiales.</p>
+                    <div class="card-footer">
+                        <span class="price">$129.99</span>
+                        <button class="btn">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

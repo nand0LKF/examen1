@@ -1,0 +1,286 @@
+/* ==============================
+   RESET + FUENTE ORBITRON
+   ============================== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #020617 0%, #020617 40%, #111827 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    color: #e5e7eb;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #f9fafb;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.subtitle {
+    color: rgba(249, 250, 251, 0.8);
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* ==============================
+   CARD CONTAINER
+   ============================== */
+.card {
+    position: relative;
+    background: #0b1120;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease;
+    border: 1px solid #1f2937;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.9);
+}
+
+/* ==============================
+   BADGE POSICIONADO
+   ============================== */
+.badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    animation: badgeBounce 0.5s ease;
+}
+
+@keyframes badgeBounce {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Variantes de badges */
+.badge-new {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+}
+
+.badge-discount {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+}
+
+.badge-hot {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: #111827;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.badge-limited {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.4rem 0.8rem;
+    animation: badgeShake 3s ease-in-out infinite;
+}
+
+@keyframes badgeShake {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-5deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
+.badge-premium {
+    background: linear-gradient(135deg, #1f2933 0%, #374151 100%);
+    color: #ffd700;
+    border: 2px solid #ffd700;
+}
+
+.badge-bestseller {
+    background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+    color: white;
+}
+
+/* ==============================
+   CARD IMAGE
+   ============================== */
+.card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+/* ==============================
+   CARD CONTENT
+   ============================== */
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h3 {
+    color: #e5e7eb;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+}
+
+.card-content p {
+    color: #9ca3af;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* ==============================
+   CARD FOOTER
+   ============================== */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #1f2937;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #818cf8 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.btn {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(99, 102, 241, 0.6);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .badge {
+        top: 0.7rem;
+        right: 0.7rem;
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .badge-discount {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-content {
+        padding: 1rem;
+    }
+    
+    .card-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .card-content p {
+        font-size: 0.9rem;
+    }
+    
+    .price {
+        font-size: 1.3rem;
+    }
+    
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}

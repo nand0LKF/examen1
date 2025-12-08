@@ -1,0 +1,81 @@
+/* Reseteo básico y estilos generales */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'Orbitron', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #020617;
+    color: #e5e7eb;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #020617;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    border: 1px solid #1f2937;
+}
+
+h2 {
+    color: #f9fafb;
+    border-left: 5px solid #22d3ee;
+    padding-left: 10px;
+    margin-top: 2rem;
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+/* Hacemos que las imágenes sean fluidas */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+/* --------------------------------------------------
+   CASO 3: Lógica para Fondo Responsive
+   -------------------------------------------------- */
+
+.hero-background {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    transition: background-image 0.3s ease-in-out;
+    border: 1px solid #1f2937;
+    
+    /* 1. Mobile First (Imagen pequeña por defecto) */
+    background-image: url('https://placehold.co/400x400/111827/FFFFFF?text=BG+Mobile');
+}
+
+/* 2. Tablet (Media Query) */
+@media (min-width: 600px) {
+    .hero-background {
+        background-image: url('https://placehold.co/800x400/020617/FFFFFF?text=BG+Tablet');
+    }
+}
+
+/* 3. Desktop (Media Query) */
+@media (min-width: 1024px) {
+    .hero-background {
+        background-image: url('https://placehold.co/1200x400/020617/22D3EE?text=BG+Desktop');
+    }
+}
+
+/* 4. Pantallas de alta densidad (Retina display) - Opcional pero recomendado */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-background {
+        /* Aquí cargaríamos una imagen @2x para mayor nitidez */
+        border: 2px solid #facc15; /* Dorado para indicar retina en el demo */
+    }
+}
